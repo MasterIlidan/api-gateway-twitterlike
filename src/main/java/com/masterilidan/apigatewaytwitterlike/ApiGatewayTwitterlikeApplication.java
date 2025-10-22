@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
-@CrossOrigin(originPatterns = "http://192.168.0.*")
 public class ApiGatewayTwitterlikeApplication {
 
     public static void main(String[] args) {

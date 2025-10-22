@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-
 public class MessageRouter {
     @Bean
     public RouteLocator messageServiceRoutes(RouteLocatorBuilder builder) {
@@ -21,7 +20,7 @@ public class MessageRouter {
                             .uri(messageServiceUrl);
                 })
                 .route(p -> {
-                    String path = "/messages/user/{id}";
+                    String path = "/messages/user{id}";
                     return p
                             .path(path)
                             .filters(f -> f.setPath(path))
