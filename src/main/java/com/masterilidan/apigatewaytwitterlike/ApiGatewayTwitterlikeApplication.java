@@ -69,6 +69,30 @@ public class ApiGatewayTwitterlikeApplication {
                             .filters(f -> f.setPath(path))
                             .uri(messageServiceUrl);
                 })
+                //--------------------
+                //user service
+                //--------------------
+                .route(p -> {
+                    String path = "/register";
+                    return p
+                            .path(path)
+                            .filters(f -> f.setPath(path))
+                            .uri(userServiceUrl);
+                })
+                .route(p -> {
+                    String path = "/user{id}";
+                    return p
+                            .path(path)
+                            .filters(f -> f.setPath(path))
+                            .uri(userServiceUrl);
+                })
+                .route(p -> {
+                    String path = "/login";
+                    return p
+                            .path(path)
+                            .filters(f -> f.setPath(path))
+                            .uri(userServiceUrl);
+                })
                 .build();
     }
 }
