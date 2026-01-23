@@ -1,5 +1,6 @@
 package com.masterilidan.apigatewaytwitterlike.routers;
 
+import com.masterilidan.apigatewaytwitterlike.config.UrlConfigurer;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -7,9 +8,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SubsRouter {
+    private final String subsServiceUrl;
+
+    public SubsRouter(UrlConfigurer urlConfigurer) {
+        subsServiceUrl = "http://" + urlConfigurer.getBaseAddrSubsService();
+    }
     @Bean
     public RouteLocator subsServiceRoutes(RouteLocatorBuilder builder) {
-        String subsServiceUrl = "http://192.168.0.179:8082";
         RouteLocatorBuilder.Builder subs = builder.routes()
                 //--------------------
                 //subscription service

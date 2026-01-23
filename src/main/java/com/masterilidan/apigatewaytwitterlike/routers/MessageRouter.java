@@ -1,5 +1,6 @@
 package com.masterilidan.apigatewaytwitterlike.routers;
 
+import com.masterilidan.apigatewaytwitterlike.config.UrlConfigurer;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -7,9 +8,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MessageRouter {
+    private final String messageServiceUrl;
+
+    public MessageRouter(UrlConfigurer urlConfigurer) {
+        messageServiceUrl = "http://" + urlConfigurer.getBaseAddrMessageService();
+    }
+
     @Bean
     public RouteLocator messageServiceRoutes(RouteLocatorBuilder builder) {
-        String messageServiceUrl = "http://192.168.0.179:8081";
 
         RouteLocatorBuilder.Builder messages = builder.routes()
                 .route(p -> {
